@@ -1,0 +1,21 @@
+{
+  "name": "week7---assignment",
+  "version": "1.0.0",
+  "description": "Todo API with logging, validation, and error handling",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "joi": "^18.2.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
