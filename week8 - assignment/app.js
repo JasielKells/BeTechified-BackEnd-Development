@@ -66,20 +66,6 @@ app.get('/todos', async (req, res, next) => {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get('/todos/active', async (req, res, next) => {
   try {
       const todos = await Todo.find({ completed: false });
