@@ -69,7 +69,11 @@ app.get('/todos', async (req, res, next) => {
 app.get('/todos/active', async (req, res, next) => {
   try {
       const todos = await Todo.find({ completed: false });
-      res.status(200).json(todos);
+      res.status(200).json({
+      success: true,
+      count: todos.length,
+      data: todos
+    });
   } catch (error) {
     next(error);
   }
@@ -78,7 +82,11 @@ app.get('/todos/active', async (req, res, next) => {
 app.get('/todos/completed', async (req, res, next) => {
   try {
       const todos = await Todo.find({ completed: true });
-      res.status(200).json(todos);
+      res.status(200).json({
+      success: true,
+      count: todos.length,
+      data: todos
+      });
   } catch (error) {
     next(error);
   }
