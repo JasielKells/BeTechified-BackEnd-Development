@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
       GET: ['/todos?completed=true, /todos?completed=/false', '/todos?task=search', '/todos', '/todos/:id', '/todos/active', '/todos/completed'],
       POST: ['/todos'],
       PATCH: ['/todos/:id'],
+      PUT: ['/todos/:id'],
       DELETE: ['/todos/:id']
     }
   });
