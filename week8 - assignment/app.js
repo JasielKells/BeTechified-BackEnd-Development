@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   res.status(200).json({
     message: 'Todo API is running!',
     endpoints: {
-      GET: ['/todos?completed=true/false', '/todos?task=search', '/todos', '/todos/:id', '/todos/active', '/todos/completed'],
+      GET: ['/todos?completed=true, /todos?completed=/false', '/todos?task=search', '/todos', '/todos/:id', '/todos/active', '/todos/completed'],
       POST: ['/todos'],
       PATCH: ['/todos/:id'],
       DELETE: ['/todos/:id']
