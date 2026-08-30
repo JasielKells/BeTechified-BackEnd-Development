@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   res.status(200).json({
     message: 'Todo API is running!',
     endpoints: {
-      GET: ['/todos', '/todos/:id', '/todos/active', '/todos/completed'],
+      GET: ['/todos?completed=true/false', '/todos?task=search', '/todos', '/todos/:id', '/todos/active', '/todos/completed'],
       POST: ['/todos'],
       PATCH: ['/todos/:id'],
       DELETE: ['/todos/:id']
@@ -35,15 +35,50 @@ app.get('/', (req, res) => {
   });
 });
 
-// GET Routes
+
+// GET all todos with QUERY PARAMETER SUPPORT)
 app.get('/todos', async (req, res, next) => {
   try {
-      const todos = await Todo.find({});
-      res.status(200).json(todos);
-  } catch (error){
+    // Build filter object from query parameters
+    const filter = {};
+    
+    // Filter by completed status
+    if (req.query.completed !== undefined) {
+      filter.completed = req.query.completed === 'true';
+    }
+    
+    // Filter by task (partial match - case insensitive)
+    if (req.query.task) {
+      filter.task = { $regex: req.query.task, $options: 'i' };
+    }
+    
+    // Execute query with filters
+    const todos = await Todo.find(filter);
+    
+    // Send simplified response
+    res.status(200).json({
+      success: true,
+      count: todos.length,
+      data: todos
+    });
+  } catch (error) {
     next(error);
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/todos/active', async (req, res, next) => {
   try {
@@ -118,7 +153,7 @@ app.put('/todos/:id', validateObjectId, async (req, res, next) => {
     const { task, completed } = req.body;             // Extract only the allowed fields from request body
         
     if (!task) {
-      throw new AppError('Task is required for full update, 404)');
+      throw new AppError('Task is required for full update, 400');
     }
     
     if (completed === undefined || completed === null) {
@@ -143,7 +178,7 @@ app.put('/todos/:id', validateObjectId, async (req, res, next) => {
     );
 
     if (!todo) {
-      throw nreAppError('Todo not found', 400);
+      throw nreAppError('Todo not found', 404);
     }
 
     res.status(200).json({
@@ -161,7 +196,7 @@ app.delete('/todos/:id', validateObjectId, async (req, res, next) => {
     const todo = await Todo.findByIdAndDelete(req.params.id);
     
     if (!todo) {
-      throw new AppError('Todo not found', 400);
+      throw new AppError('Todo not found', 404);
     }
 
     res.status(200).json({ message: `Todo ${req.params.id} deleted successfully!` });
