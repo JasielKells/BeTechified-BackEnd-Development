@@ -3,8 +3,8 @@
 A robust, production-ready RESTful Blog API built with **Node.js**, **Express**, and **MongoDB**. This project was refactored from a monolithic structure into a clean **MVC (Model-View-Controller)** architecture, complete with **JWT Authentication**, **Cloudinary Image Uploads**, and strict **Environment Variable Validation**.
 
 ## 🔗 Live Links
-* **API Base URL:** `https://your-render-app-url.onrender.com` *(Replace with your actual Render URL)*
-* **GitHub Repository:** `https://github.com/yourusername/week10-assignment` *(Replace with your actual GitHub link)*
+* **API Base URL:** `https://week14-blog-api.onrender.com/`
+* **GitHub Repository:** `https://github.com/JasielKells/BeTechified-BackEnd-Development/tree/main/week_14-assignment`
 
 
 ## ✨ Features
@@ -21,7 +21,7 @@ A robust, production-ready RESTful Blog API built with **Node.js**, **Express**,
 
 The project follows a standard `src` directory pattern to keep the root clean and the application scalable.
 
-
+```text
 week14-assignment/
 ├── src/
 │   ├── config/
