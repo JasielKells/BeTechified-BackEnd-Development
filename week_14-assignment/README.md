@@ -46,7 +46,7 @@ week14-assignment/
 ├── package.json
 ├── README.md
 └── server.js                 # Entry point (Connects DB & starts server)
-
+```text
 
 
 ## 🚀 Getting Started Locally
